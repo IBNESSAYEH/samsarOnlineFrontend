@@ -10,33 +10,33 @@ const Footer = () => {
                     <div className="col-md-3">
                         <h5>About</h5>
                         <ul className="list-unstyled">
-                            <li>About us</li>
-                            <li>Careers</li>
-                            <li>Investors</li>
+                            <li>Lorem, ipsum dolor</li>
+                            <li>Lorem, ipsum dolor</li>
+                            <li>Lorem, ipsum dolor</li>
                         </ul>
                     </div>
                     <div className="col-md-3">
                         <h5>Community</h5>
                         <ul className="list-unstyled">
-                            <li>Diversity & Belonging</li>
-                            <li>Accessibility</li>
-                            <li>Frontline Stays</li>
+                            <li>Lorem, ipsum dolor</li>
+                            <li>Lorem, ipsum dolor</li>
+                            <li>Lorem, ipsum dolor</li>
                         </ul>
                     </div>
                     <div className="col-md-3">
                         <h5>Host</h5>
                         <ul className="list-unstyled">
-                            <li>Host your home</li>
-                            <li>Host an Online Experience</li>
-                            <li>Responsible hosting</li>
+                            <li>Lorem, ipsum dolor</li>
+                            <li>Lorem, ipsum dolor</li>
+                            <li>Lorem, ipsum dolor</li>
                         </ul>
                     </div>
                     <div className="col-md-3">
                         <h5>Support</h5>
                         <ul className="list-unstyled">
-                            <li>Our COVID-19 Response</li>
-                            <li>Help Center</li>
-                            <li>Cancellation options</li>
+                            <li>Lorem, ipsum dolor</li>
+                            <li>Lorem, ipsum dolor</li>
+                            <li>Lorem, ipsum dolor</li>
                         </ul>
                     </div>
                 </div>
@@ -55,7 +55,7 @@ const Footer = () => {
                 </div>
                 <div className="row">
                     <div className="col-12">
-                        <p className="text-center">&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
+                        <p className="text-center">&copy; {new Date().getFullYear()} Lorem, ipsum dolor.</p>
                     </div>
                 </div>
             </div>

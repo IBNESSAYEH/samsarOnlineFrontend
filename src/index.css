@@ -68,6 +68,8 @@ div.btn-signup:hover{
   background: #7200f4;
 }
 
+
+
 body {
   height: 100vh;
   background-color:   var(--card-primary-color) !important;
@@ -116,7 +118,7 @@ nav{
 .section__item__img{
   width: 32vh !important;
   height: 35vh;
-  margin: 2vh .5vh;
+  margin: 2vh auto;
   border-radius: .5rem;
   transition: transform 2s;
 }
@@ -136,6 +138,54 @@ nav{
 .card-text {
   color: var(--text-muted);
 }
+/* _________________________________detatil page style__________________________________ */
+
+
+.detail__image img{
+  height: 63vh;
+  padding:0 !important;
+  border-radius: .3rem;
+  background-color: var(--card-primary-color) ;
+}
+.detail__info{
+  height: 70vh;
+  padding: .4rem;
+  background-color: var(--card-primary-color) ;
+  box-shadow: .1rem .1rem 4rem .1rem var(--text-muted);
+
+}
+.card-body p span {
+  font-size: 1.1rem !important;
+  font-family:   'Trebuchet MS', sans-serif;
+}
+
+
+.modal-header .card-header{
+  background-color: var(--btn-secondary-color) !important;
+}
+
+.detail__info__card{
+
+  box-shadow: .1rem .1rem .5rem .1rem var(--text-muted);
+}
+/* 
+.detail{
+  height: 70vh;
+  background-color: var(--card-primary-color);
+  box-shadow: .1rem .1rem .5rem .1rem var(--text-primary-color);
+.detail__image img{
+  height: 70vh;
+
+
+}
+ */
+.loading__img img{
+  height: 80vh;
+  width:80vh;
+  border-radius: .7rem;
+
+}
+
 /* __________________________auth forms style______________________________ */
 
 .register__main {
@@ -178,7 +228,13 @@ nav{
   display: block;
   margin-bottom: 0.5rem;
 }
+label{
+  font-weight: bold;
+}
+label::after{
+  content: ' :';
 
+}
 .register__form__control, .login__form__control {
   width: 100%;
   padding: 0.5rem 1rem;

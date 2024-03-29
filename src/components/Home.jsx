@@ -11,12 +11,16 @@ const Home = () => {
     Aos.init();
   }, []);
 
-  const {annonce, setAnnonce} = SamsarAnnoncContext();
+  const {annonces, setAnnonces,getAnnonce} = SamsarAnnoncContext();
+
+  useEffect(() => {
+    getAnnonce();
+  }, []);
 
   return (
     <>
 
-     <HomeHeader />
+     <HomeHeader  />
       {/* main => housing items section */}
       <main className="container d-flex flex-column  align-items-center  my-5  ">
 
@@ -24,13 +28,13 @@ const Home = () => {
 
       <section className="section__about row justify-content-between gap-2 " >
 
-        <h2 className="section__about__header col-12 col-lg-5 fs-1 fw-bold align-self-center lh-base " data-aos="flip-left"
+        <h2 className="section__about__header col-12 col-lg-5 fs-1 align-self-center lh-base " data-aos="flip-left"
      data-aos-easing="ease-out-cubic"
      data-aos-duration="2000">
           Discover extraordinary places and embark on unforgettable journeys <br /> 
           <span className="fs-1 fw-bold">Your next adventure starts here.....</span> <br/>
-          <NavLink  to="/login"><div className="btn btn-signin">signin</div></NavLink>
-          <NavLink  to="/Register"><div className="btn btn-signup mx-3 " >signup</div></NavLink>
+          {/* <NavLink  to="/login"><div className="btn btn-signin">signin</div></NavLink>
+          <NavLink  to="/Register"><div className="btn btn-signup mx-3 " >signup</div></NavLink> */}
           </h2>
         <img src="https://images.pexels.com/photos/8292828/pexels-photo-8292828.jpeg"  className="section__about__img col-lg-6 col-none" alt='' data-aos="flip-left"
      data-aos-easing="ease-out-cubic"
@@ -47,7 +51,7 @@ const Home = () => {
         <section className="section__card__items row justify-content-center  gap-lg-5 gap-sm-2  mt-5 ">
           {/* card items */}
         {
-          annonce.map((item, index) => {
+          annonces.map((item, index) => {
             return (
               <div className="section__item" key={item.id} data-aos="flip-left"
               data-aos-easing="ease-out-cubic"
@@ -55,6 +59,7 @@ const Home = () => {
              <AnnonceList index={index} item={item} />
              </div>
             )
+           
           })
         }
          </section>

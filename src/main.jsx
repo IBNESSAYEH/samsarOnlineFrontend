@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     
     <AnnonceContextProvider>
       <AuthProvider>
-        <RouterProvider router={router} />
+        <RouterProvider  router={router} />
       </AuthProvider>
     </AnnonceContextProvider>
     

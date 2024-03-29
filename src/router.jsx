@@ -10,9 +10,11 @@ import GuestLayout from "./layouts/GuestLayout";
 import AdminLayout from "./layouts/AdminLayout";
 import HomeownersLayout from "./layouts/HomeownersLayout";
 import AnnonceCreataForm from "./components/Annonce/AnnonceCreataForm";
+import AnnonceUpdateForm from "./components/Annonce/AnnonceUpdateForm";
 
 export const router = createBrowserRouter([
     {
+        
         element : <Layout />,
         children : [
             {
@@ -30,6 +32,10 @@ export const router = createBrowserRouter([
             {
                 path: '/annonce/create',
                 element: <AnnonceCreataForm />
+            },
+            {
+                path: '/annonce/update/:id',
+                element: <AnnonceUpdateForm />
             }
         ]
     },
