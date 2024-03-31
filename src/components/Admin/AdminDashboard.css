@@ -1,0 +1,107 @@
+/* AdminDashboard.css */
+
+/* Sidebar styles */
+a{
+    
+    color: #fff;
+}
+ul{
+    list-style: none;
+    padding: 0;
+}
+h2{
+    color: #fff;
+
+}
+.admin-dashboard-container {
+   background-color: #272953 ;
+}
+.sidebar {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    height: calc(100vh - 50px);
+    width: 200px;
+    background-color:  #16113a ;
+    padding: 20px;
+    box-sizing: border-box; /* Include padding and border in width */
+    z-index: 1; /* Ensure sidebar is above other content */
+   
+}
+
+/* Main content styles */
+.main-content {
+    margin-left: 200px; /* Adjusted margin-left to accommodate sidebar */
+    padding: 4rem 2rem;
+    box-sizing: border-box; /* Include padding and border in width */
+}
+
+/* Statistique card styles */
+.cards-section {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap !important;
+    gap: 1rem;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: #E8EEFB;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+     flex-grow: 1 ;
+    margin-bottom: 20px;
+    flex-basis: calc(33.33% - 20px); /* Adjusted to take equal space */
+    box-sizing: border-box; /* Include padding and border in width */
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border: none !important;
+    border-collapse: collapse;
+}
+th, td{
+    text-align: center;
+}
+th{
+    background-color: #16113a !important;
+    color: #fff !important;
+
+}
+ td {
+    background-color: #E8EEFB !important;
+    
+}
+
+
+
+
+
+
+
+.table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table tbody tr:hover {
+    background-color: #f0f0f0;
+}
+
+/* Hide sidebar on mobile and tablet */
+@media (max-width: 991.98px) {
+    .sidebar {
+        display: none;
+    }
+}
+
+/* Adjust main content margin for mobile and tablet */
+@media (max-width: 991.98px) {
+    .main-content {
+        margin-left: 0;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}

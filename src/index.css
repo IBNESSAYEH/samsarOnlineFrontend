@@ -79,6 +79,12 @@ body {
 /* _____________________________navbar style_________________________________ */
 
 nav{
+  position: fixed !important;
+  top: 0;
+  width: 100vw !important;
+  z-index: 1000;
+
+  
   background-color: var(--bg-color) !important;
 }
 .nav__logo{
@@ -303,3 +309,9 @@ footer{
   border-top-right-radius: 3rem !important;
   border-bottom-left-radius: 3rem !important;
 } 
+
+
+
+
+
+

@@ -11,6 +11,7 @@ import AdminLayout from "./layouts/AdminLayout";
 import HomeownersLayout from "./layouts/HomeownersLayout";
 import AnnonceCreataForm from "./components/Annonce/AnnonceCreataForm";
 import AnnonceUpdateForm from "./components/Annonce/AnnonceUpdateForm";
+import AdminDashboard from "./components/Admin/AdminDashboard";
 
 export const router = createBrowserRouter([
     {
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
                 element: <AnnonceUpdateForm />
             }
         ]
+    },
+    {
+        path: '/admin/dashboard',
+        element: <AdminDashboard />
     },
     // {
     //     element: <GuestLayout />,
@@ -104,5 +109,6 @@ export const router = createBrowserRouter([
                         </AuthProvider>
                     )
                 }
+                
   
 ]);

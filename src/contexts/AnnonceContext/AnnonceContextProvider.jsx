@@ -11,7 +11,7 @@ export const AnnonceContextProvider = ({ children }) => {
    const getAnnonce = async () => {
     try {
       const response = await axiosClient.get("/annonces")  .then(res => {
-        console.log(res.data);
+    
         setAnnonces(res.data);
       })  
     } catch (error) {
@@ -137,7 +137,7 @@ return error;
 const getAnnonceTypes = async () => {
   try {
       const response = await axiosClient.get("/types");
-      console.log(response.data);
+      
       setTypes(response.data);
   } catch (error) {
       console.log(error);
@@ -157,6 +157,9 @@ const getCategories = async () => {
 
 useEffect(() => {
     getAnnonce();
+    getCategories();
+    getAnnonceTypes();
+    getCities();
   }, []);
   return <AnnonceContext.Provider value={{
     annonces, 

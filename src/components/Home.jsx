@@ -11,11 +11,9 @@ const Home = () => {
     Aos.init();
   }, []);
 
-  const {annonces, setAnnonces,getAnnonce} = SamsarAnnoncContext();
+  const {annonces} = SamsarAnnoncContext();
 
-  useEffect(() => {
-    getAnnonce();
-  }, []);
+
 
   return (
     <>
@@ -28,14 +26,14 @@ const Home = () => {
 
       <section className="section__about row justify-content-between gap-2 " >
 
-        <h2 className="section__about__header col-12 col-lg-5 fs-1 align-self-center lh-base " data-aos="flip-left"
+        <h3 className="section__about__header col-12 col-lg-5 fs-1 align-self-center lh-base " data-aos="flip-left"
      data-aos-easing="ease-out-cubic"
      data-aos-duration="2000">
           Discover extraordinary places and embark on unforgettable journeys <br /> 
           <span className="fs-1 fw-bold">Your next adventure starts here.....</span> <br/>
           {/* <NavLink  to="/login"><div className="btn btn-signin">signin</div></NavLink>
           <NavLink  to="/Register"><div className="btn btn-signup mx-3 " >signup</div></NavLink> */}
-          </h2>
+          </h3>
         <img src="https://images.pexels.com/photos/8292828/pexels-photo-8292828.jpeg"  className="section__about__img col-lg-6 col-none" alt='' data-aos="flip-left"
      data-aos-easing="ease-out-cubic"
      data-aos-duration="2000"/>
