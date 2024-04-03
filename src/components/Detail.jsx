@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Carousel, Button, Form } from "react-bootstrap";
 import { useParams, NavLink } from "react-router-dom";
 import { SamsarAnnoncContext } from "../contexts/AnnonceContext/AnnonceContextProvider";
@@ -10,11 +10,15 @@ import { BsCalendarDateFill } from "react-icons/bs";
 import { MdBalcony, MdBedroomParent, MdDescription, MdElevator, MdHouse, MdMeetingRoom, MdPool, MdPriceCheck } from "react-icons/md";
 import { FaListAlt, FaParking, FaTachometerAlt } from "react-icons/fa";
 import { LuAlignHorizontalSpaceAround } from "react-icons/lu";
+import { FaRegComment } from "react-icons/fa6";
+import axiosClient from "../axios";
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 
 const DetailPage = () => {
-  const { annonces } = SamsarAnnoncContext();
+  const { annonces, deleteAnnonce, currentUser } = SamsarAnnoncContext();
   const { id } = useParams();
-
+// console.log(currentUser)
   const [annonce, setAnnonce] = useState(null);
 
   useEffect(() => {
@@ -28,17 +32,53 @@ const DetailPage = () => {
     return date.toLocaleDateString('en-US', options);
   };
 
+
+
+
+ 
+  const commentRef = useRef('');
+
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault();
+    
+    const contenu = commentRef.current.value;
+    if (!contenu) return;
+
+    try {
+      const response = await axiosClient.post('/comments', {
+        contenu,
+        user_id: currentUser.id,
+        annonce_id: id
+      });
+      // Optionally, perform any additional actions upon successful comment creation
+      console.log('Comment created successfully:', response.data);
+    } catch (error) {
+      // Handle error
+      console.error('Failed to create comment:', error);
+    }
+  };
+
+
+  const splideOptions = {
+    perPage: 3, // Show 3 slides at a time
+    gap: 20, // Optional: Set the gap between slides
+    rewind: true,
+    autoplay: true,
+    interval: 3000,
+  };
+
   return (
     <>
       {annonce ? (
         <div className=" mt-5">
-          <div className="detail row mt-5 justify-content-center align-content-center m-2">
+          <div className="detail  m-2">
+            <div className="row mt-5 justify-content-center align-content-center">
             <div className="col-12 col-md-7">
-              <Carousel>
+              <Carousel style={{ height: "100%"}}>
                 {annonce.images.map((image, index) => (
-                  <Carousel.Item className="detail__image" key={index}>
-                    <img
-                      className="d-block w-100"
+                  <Carousel.Item style={{ height: "100%" }}  className="detail__image" key={index}>
+                    <img style={{ height: "100%" }}
+                      className="d-block w-100 align-self-center "
                       src={`http://localhost:8000/uploads/${image.image}`}
                       alt="Annonce Image"
                     />
@@ -57,6 +97,7 @@ const DetailPage = () => {
                   <p><MdDescription /> <span>Description:</span> {annonce.description}</p>
                   <p><FaAddressBook /> <span>Address:</span> {annonce.adresse}</p>
                   <p><MdPriceCheck /> <span>Price:</span> {annonce.price} DH per night</p>
+                  {/* <p> <span className="btn btn-danger" onClick={() => deleteAnnonce(annonce.id)}>delete</span> </p> */}
                 </div>
                 <div className="card-footer" style={{ backgroundColor: "#ebf1f9" }}>
                   <a data-bs-toggle="modal" data-bs-target="#exampleModaluser">
@@ -114,46 +155,80 @@ const DetailPage = () => {
                       </div>
                     </div>
                   </div>
+
+{/* modal comments */}
+<a className='text-muted mx-3 text-secondary fs-5' data-backdrop="false"  data-bs-toggle="modal" data-bs-target={`#madalID${annonce.id}`}><FaRegComment /></a>
+
+
+<div className="modal fade" data-bs-backdrop="false" style={{ backgroundColor: "#ebf1f9" }} id={`madalID${annonce.id}`} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal-dialog" >
+        <div className="modal-content" style={{ backgroundColor: "#ebf1f9" }}>
+          <div className="modal-header" style={{ backgroundColor: "#ebf1f9" }}>
+            <h1 className="modal-title fs-5" id="exampleModalLabel">Add Comment</h1>
+            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div className="modal-body">
+            <form onSubmit={handleCommentSubmit}>
+              <div className="mb-3">
+                
+              <textarea type="text" ref={commentRef} className="form-control" placeholder='add your comment'></textarea>
+              </div>
+              
+              <button type="submit" className="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+                  
                   <NavLink to=""><FaCcMastercard className="text-success mx-3 fs-5" /></NavLink>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="mt-5">
-            <h3>Reserve the House</h3>
-            <Form>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label>Check-in Date</Form.Label>
-                <Form.Control type="date" placeholder="Enter check-in date" />
-              </Form.Group>
-              <Form.Group controlId="formBasicPassword">
-                <Form.Label>Check-out Date</Form.Label>
-                <Form.Control type="date" placeholder="Enter check-out date" />
-              </Form.Group>
-              <Button variant="primary" type="submit">Reserve</Button>
-            </Form>
-          </div>
-          <div id="reviewsCarousel" className="carousel slide" data-ride="carousel">
-            <div className="carousel-inner">
-              <div className="carousel-item active">
-                <div className="card mb-3 bg-primary">
-                  <img src="https://images.pexels.com/photos/343717/pexels-photo-343717.jpeg" className="card-img-top rounded-circle w-25 mx-auto mt-3" alt="Client profile" />
-                  <div className="card-body">
-                    <h5 className="card-title text-center">Client Name</h5>
-                    <p className="card-text">Review 1...</p>
-                  </div>
-                </div>
-              </div>
             </div>
-            <a className="carousel-control-prev" href="#reviewsCarousel" role="button" data-slide="prev">
-              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span className="sr-only">Previous</span>
-            </a>
-            <a className="carousel-control-next" href="#reviewsCarousel" role="button" data-slide="next">
-              <span className="sr-only">Next</span>
-              <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            </a>
           </div>
+   
+
+
+
+
+
+
+
+
+
+
+
+
+<div className="m-5">
+<Splide options={splideOptions}>
+  {annonce.comments.length > 0 && annonce.comments.map((comment, index) => (
+    <SplideSlide key={index}>
+      <div className="card">
+      
+        <div className="profile-info">
+          <h5 className="user-name">Review {index}</h5>
+          <p className="user-description">{comment.contenu}</p>
+        </div>
+      </div>
+    </SplideSlide>
+  ))}
+</Splide>
+</div>
+
+
+
         </div>
       ) : (
         <div className="loading__img row justify-content-center align-items-center">

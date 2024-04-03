@@ -1,5 +1,8 @@
 import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import axiosClient from "../../axios";
+import Swal from "sweetalert2";
+// import { Redirect } from 'react-router-dom';
+
 
 const AnnonceContext = createContext({});
 
@@ -18,6 +21,8 @@ export const AnnonceContextProvider = ({ children }) => {
       console.error(error);
     }
   }
+
+
 
 
 
@@ -153,13 +158,96 @@ const getCategories = async () => {
   }
 };
 
+const deleteAnnonce =  (id) => {
+    try {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then(async(result) => {
+            if (result.isConfirmed) {
+                const response = await axiosClient.delete(`/annonces/${id}`);
+                if (response.status === 200) {
+                    setAnnonces(annonces.filter(annonce => annonce.id !== id));
+                    console.log("Annonce deleted successfully");
+                }
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+            }else{
+              Swal.fire({
+                title: "Cancelled",
+                text: "Your file is safe :)",
+                icon: "error"
+              });
+            }
+          });
+     
+       
+    } catch (error) {
+        console.log(error);
+    }
+    }
 
+
+
+    const [currentUser, setCurrentUser] = useState(null);
+
+const getCurrentUSer = async() => {
+    try {
+        const response = await axiosClient.get("/currentUSer");
+       setCurrentUser(response.data);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+    const likeAnnonce = async (id) => {
+        getCurrentUSer();
+       const data = {
+              user_id: currentUser.id,
+              review: 1,
+             
+              annonce_id: id
+        }
+        try {
+            const response = await axiosClient.post(`/reviews`, data);
+
+            if (response.status === 201) {
+                // console.log("Annonce liked successfully");
+            }
+
+           
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    const unlikeAnnonce = async (id) => {
+ 
+
+        try {
+            const response = await axiosClient.delete(`/reviews/${id}`);
+            if (response.status === 204) {
+            //    
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
 useEffect(() => {
     getAnnonce();
     getCategories();
     getAnnonceTypes();
     getCities();
+    getCurrentUSer();
   }, []);
   return <AnnonceContext.Provider value={{
     annonces, 
@@ -203,6 +291,10 @@ useEffect(() => {
  setCategories,
  setTypes,
 getAnnonce,
+deleteAnnonce,
+likeAnnonce,
+unlikeAnnonce,
+currentUser
 
 
   }}>

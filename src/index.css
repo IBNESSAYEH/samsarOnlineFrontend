@@ -79,8 +79,7 @@ body {
 /* _____________________________navbar style_________________________________ */
 
 nav{
-  position: fixed !important;
-  top: 0;
+ 
   width: 100vw !important;
   z-index: 1000;
 

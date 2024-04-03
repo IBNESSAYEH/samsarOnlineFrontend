@@ -12,6 +12,7 @@ import HomeownersLayout from "./layouts/HomeownersLayout";
 import AnnonceCreataForm from "./components/Annonce/AnnonceCreataForm";
 import AnnonceUpdateForm from "./components/Annonce/AnnonceUpdateForm";
 import AdminDashboard from "./components/Admin/AdminDashboard";
+import HomeOwnerDashboard from "./components/HomeOwners/HomeOwnerDashboard";
 
 export const router = createBrowserRouter([
     {
@@ -44,55 +45,10 @@ export const router = createBrowserRouter([
         path: '/admin/dashboard',
         element: <AdminDashboard />
     },
-    // {
-    //     element: <GuestLayout />,
-    //     children: [
-    //         {
-    //             path: '/register',
-    //             element: (
-    //                 <AuthProvider>
-    //                     <Register />
-    //                 </AuthProvider>
-    //             )
-    //         },
-    //         {
-    //             path: '/login',
-    //             element: (
-    //                 <AuthProvider>
-    //                     <Login />
-    //                 </AuthProvider>
-    //             )
-    //         }
-    //     ]
-    // },
-    // {
-    //     element: <AdminLayout />,
-    //     children: [
-    //         {
-    //             path: '/Admin/dashboard',
-    //             element: (
-    //                 <AuthProvider>
-    //                     <Register />
-    //                 </AuthProvider>
-    //             )
-    //         }
-    //     ]
-    // },
- 
-   
-    // {
-    //     element: <HomeownersLayout />,
-    //     children: [
-    //         {
-    //             path: '/homeowners/dashboard',
-    //             element: (
-    //                 <AuthProvider>
-    //                     <Register />
-    //                 </AuthProvider>
-    //             )
-    //         }
-    //     ]
-    // },
+    {
+        path: '/homeOwner/dashboard',
+        element: <HomeOwnerDashboard/>
+    },
     {
                     path: '/register',
                     element: (

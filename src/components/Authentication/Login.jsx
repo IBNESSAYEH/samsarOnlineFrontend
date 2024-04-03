@@ -20,10 +20,10 @@ const Login = () => {
     <main className="register__main row justify-content-center align-items-center">
        <section className="row align-items-center flex-column  col-12">
       <img src="/assets/photos/Logo.png" alt="SAmasarOnline Logo" className="mb-2 text-center  align-self-center " style={{ width: '15vw' }}/>
-      <h2 className="section__about__header fs-4 fw-bold  col-12 col-lg-6 text-center lh-lg">
+      <h1 className="section__about__header fs-4 fw-bold  col-12 col-lg-6 text-center lh-lg">
           Discover extraordinary places and embark on unforgettable journeys <br />  
           <span className="text-center">Your next adventure starts here.....</span>
-          </h2> 
+          </h1> 
 
       </section>
       <section className="register__main__fromSection col-11 col-lg-6">

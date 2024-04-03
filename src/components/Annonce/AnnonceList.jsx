@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
-import { FaCirclePlus } from "react-icons/fa6";
+import { FaCirclePlus, FaCommentDots, FaRegComment } from "react-icons/fa6";
+import { BiLike, BiSolidLike } from 'react-icons/bi';
+import { AiOutlinePlusCircle } from 'react-icons/ai';
 
-const AnnonceList = ({item , index}) => {
+const AnnonceList = ({item , index, deleteAnonce, likeAnnonce, unlikeAnnonce}) => {
   
 
 
@@ -16,14 +18,28 @@ const AnnonceList = ({item , index}) => {
         />
         <div className="card-body" >
           <h6 className="card-title">{item.title}, {item.address}</h6>
-          <p className="card-text ">
+          <div className="card-text ">
             Proposée par {item.user.first_name} {item.user.last_name} <br />
             {item.price} DH par nuit <br />
-              <span>
-              <NavLink to={`/detail/${item.id}`}  className="text-success my-5"> <FaCirclePlus /></NavLink>
+              <span className='d-flex justify-content-between align-items-center '>
+              <NavLink to={`/detail/${item.id}`}  className="text-muted my-2"> <AiOutlinePlusCircle /></NavLink>
+            
+
+
+
+
+
+
+
+
+              {item.reviews.length > 0 ? 
+              <span className="text-muted mx-2"  role="button" onClick={() =>unlikeAnnonce(item.reviews[0].id)}><BiSolidLike /> {item.reviews.length}</span> :
+              <span className="text-muted mx-2"  role="button" onClick={() =>likeAnnonce(item.id)}> <BiLike /> {item.reviews.length}</span> 
+              }
+              {/* <span className="btn btn-danger" onClick={() => deleteAnonce(item.id)}>delete</span> */}
             </span>
              
-          </p>
+          </div>
         </div>
      </>
     );

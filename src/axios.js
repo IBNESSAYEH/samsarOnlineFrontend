@@ -39,6 +39,7 @@ const axiosClient = axios.create({
 // Request interceptor
 axiosClient.interceptors.request.use(
   async (config) => {
+    
      
     config.headers.Authorization = `Bearer ${localStorage.getItem('TOKEN')}`;
     return config;
@@ -59,6 +60,7 @@ axiosClient.interceptors.response.use(
     if (error.response && error.response.status === 401) {
       router.navigate('/login'); // Redirect to login page for unauthorized requests
     }
+    
     return Promise.reject(error);
   }
 );

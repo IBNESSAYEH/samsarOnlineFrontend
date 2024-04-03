@@ -45,7 +45,7 @@ useEffect(() => {
                                             <label htmlFor="title" className="form-label">
                                                 Email
                                             </label>
-                                            <input type="text" ref={email}  className="form-control announcement_form_input" id="Email" placeholder="Enter email" />
+                                            <input type="text" ref={email} className="form-control announcement_form_input" id="Email" placeholder="Enter email" />
                                         </div>
                                         <div className="mb-3 col-12 col-md-5 gap-2 flex-grow-1">
                                             <label htmlFor="" className="form-label">
@@ -193,7 +193,8 @@ useEffect(() => {
                             <div className="col-md-6">
                                 <img src="https://img.freepik.com/free-vector/real-estate-searching_52683-46407.jpg" alt="annonce" style={{ borderStartEndRadius: "2rem" }} className="w-100" />
                             </div>
-                        </div>)
+                        </div>
+                        )
                         }
                     </div>
         </>

@@ -23,12 +23,7 @@ const AnnonceUpdateForm = () => {
         const formErrors = validationAnnonceForm();
         setError(formErrors);
 
-    //     const formData = new FormData();
-    // formData.append('titre', titre);
-    // formData.append('description', description);
-    // formData.append('prix', prix);
-    // formData.append('image', image);
-    
+
         const AnnonceData = {
             title: title.current.value,
             description: description.current.value,
@@ -65,15 +60,16 @@ const AnnonceUpdateForm = () => {
         try {
             console.log("my update data ",AnnonceData);
 
-            const response = await axiosClient.patch(`/annonces/${id}`, AnnonceData, {
+            const response = await axiosClient.post(`/annonces/post/${id}`, AnnonceData, {
                 headers: {
-                    // 'Content-Type': 'multipart/form-data',
-                    'Accept' :'application/json',
-                    'content': 'application/json',
+                    'Content-Type': 'multipart/form-data'
                 }
             });
+
             if (response.status === 201) {
                 console.log("Annonce created successfully");
+            }else {
+                console.log(response.data);
             }
         } catch (error) {
             console.log("eeeeeeeeeoro",error);

@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import axios from "axios";
 import axiosClient from "../../axios";
 import { Navigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AuthProvider = ({ children }) => {
     const [userToken, setUserToken] = useState(localStorage.getItem('TOKEN') || "");
@@ -25,6 +26,7 @@ const AuthProvider = ({ children }) => {
     const emailInput = useRef("");
     const passwordInput = useRef("");
     const confirmPasswordInput = useRef("");
+    const  roleRef = useRef("");
 
     // inputs messages states initializing
     const [firstNameInputMessage, setFirstNameInputMessage] = useState("");
@@ -157,45 +159,93 @@ const AuthProvider = ({ children }) => {
                 phone: phoneInput.current.value,
                 email: emailInput.current.value,
                 password: passwordInput.current.value,
+                role_id: roleRef.current.value,
             };
 
             try {
                 const response = await axiosClient.post("/register", formData);
 
                 if (response.status === 200) {
-                    alert(response.data.message);
+                     Swal.fire({
+                        title: "create successfully!",
+                        text: response.data.message,
+                        icon: "success",
+                        timer: 1500
+                      });
+
+                      window.location.href = '/login';
                 } else if (response.status === 422) {
                     // Display validation errors
                     const errorMessages = Object.values(response.data.error).join('\n');
-                    alert(errorMessages);
+                   
+
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: errorMessages,
+                        footer: '<a href="#">Why do I have this issue?</a>',
+                        timer: 1500
+                      });
                 }
-                window.location.href = '/login';
             } catch (error) {
                 if (error.response) {
                     if (error.response.status === 500) {
-                        alert("Email already exists. Please use a different email.");
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "An unexpected error occurred. Please try again later.",
+                            footer: '<a href="#">Why do I have this issue?</a>',
+                            timer: 2500
+                          });
+                       
                     } else {
                         const errorMessages = Object.values(error.response.data.error).join('\n');
 
-                        alert(errorMessages + '\n' + "try again and respect the messages bellow rhe inputs !");
+                       errorMessages + '\n' + "try again and respect the messages bellow rhe inputs !"
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: errorMessages + '\n' + "try again and respect the messages bellow rhe inputs !",
+                            footer: '<a href="#">Why do I have this issue?</a>',
+                            timer: 1500
+                          });
                     }
                 } else {
-                    alert("try again and respect the messages bellow rhe inputs !");
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Network error. Please check your internet connection.",
+                        footer: '<a href="#">Why do I have this issue?</a>',
+                        timer: 1500
+                      });
                 }
             }
         } else {
-            alert("Please correct the errors and try again!!");
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Please correct the errors and try again!!",
+                footer: '<a href="#">Why do I have this issue?</a>',
+                timer: 1500
+              });
         }
     };
 
-    // handle login form submit
+// handle login form submit
 // handle login form submit
 const handleLoginSubmit = async (event) => {
     event.preventDefault();
   
     // Check if all fields are valid before submission
     if (!handleLoginEmailInput() || !handlePasswordInput()) {
-      alert("Please correct the errors and try again!!");
+ Swal.fire({
+
+    icon: "error",
+    title: "Oops...",
+    text: "Please correct the errors and try again!!",
+    footer: '<a href="#">Why do I have this issue?</a>',
+    timer: 1500
+    });
       return;
     }
   
@@ -211,6 +261,9 @@ const handleLoginSubmit = async (event) => {
   
       // Include CSRF token in headers of POST request
       const response = await axiosClient.post("/login", formData, {
+        // headers: {
+        //   'X-CSRF-TOKEN': csrfToken,
+        // },
        
       });
   
@@ -280,6 +333,7 @@ const handleLoginSubmit = async (event) => {
             emailInput,
             passwordInput,
             confirmPasswordInput,
+            roleRef,
             firstNameInputMessage,
             lastNameInputMessage,
             phoneInputMessage,

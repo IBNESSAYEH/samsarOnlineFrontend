@@ -11,7 +11,7 @@ const Home = () => {
     Aos.init();
   }, []);
 
-  const {annonces} = SamsarAnnoncContext();
+  const {annonces, deleteAnnonce, likeAnnonce, unlikeAnnonce} = SamsarAnnoncContext();
 
 
 
@@ -54,7 +54,7 @@ const Home = () => {
               <div className="section__item" key={item.id} data-aos="flip-left"
               data-aos-easing="ease-out-cubic"
               data-aos-duration="2000">
-             <AnnonceList index={index} item={item} />
+             <AnnonceList index={index} item={item} deleteAnonce={deleteAnnonce} likeAnnonce={likeAnnonce} unlikeAnnonce={unlikeAnnonce}/>
              </div>
             )
            
