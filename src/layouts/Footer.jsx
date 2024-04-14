@@ -40,7 +40,7 @@ const Footer = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row mt-2 ">
                     <div className="col-12 d-flex justify-content-center gap-5 ">
                         <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="text-dark">
                             <FaFacebook className="mr-3 text-primary fs-3 " />
@@ -53,8 +53,8 @@ const Footer = () => {
                         </a>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-12">
+                <div className="row mt-2 ">
+                    <div className="col-12 mt-2 ">
                         <p className="text-center">&copy; {new Date().getFullYear()} Lorem, ipsum dolor.</p>
                     </div>
                 </div>

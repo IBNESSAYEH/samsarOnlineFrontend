@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Navbar from '../../layouts/Navbar';
 import './AdminDashboard.css'; 
 import { BiSolidCategory } from "react-icons/bi";
@@ -93,6 +93,28 @@ const HomeOwnerDashboard = () => {
 
     }
 
+    const [dashboardData, setDashboardData] = useState({});
+
+    const getAdminDashboardData = async () => {
+      try {
+        const adminDashboardResponse = await axiosClient.get('/admin/dashboard');
+        console.log(adminDashboardResponse);
+        if(adminDAshboardResponse.status === 200){
+            console.log(adminDashboardResponse);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    
+    useEffect(() => {
+      getAdminDashboardData();
+    }, []);
+    
+    // Log dashboardData whenever it changes
+    useEffect(() => {
+      console.log(dashboardData);
+    }, [dashboardData]);
 
 
 

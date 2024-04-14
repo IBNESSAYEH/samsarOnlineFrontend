@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Merriweather", serif;
+  font-family:  Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
   font-weight: 300;
   
 }
@@ -11,6 +11,29 @@ a{
   text-decoration: none !important;
   cursor: pointer;
   font-size: 1.2rem;
+}
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-primary-color) !important;
+  margin: .5rem 0;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h2 span{
+  font-size: 1.8rem;
+  font-weight: bold;
+  width: fit-content;
+  padding: .5rem;
+  display: flex;
+  justify-content: center;
+  color: var(--text-primary-color);
+  border: transparent .5rem solid;
+  border-bottom: solid .5rem var(--btn-primary-color);
+
 }
 
 div.btn{
@@ -94,19 +117,60 @@ nav{
 }
 /* __________________________ HOME page style______________________________ */
 .carousel__image{
-  height: 60vh;
+  height: 80vh;
 }
 
 /* section about */
 .section__about__header span{
   color: var( --btn-primary-color);
 }
+.navbar-nav{
+  width: 50vw !important;
+}
+.nav-item{
+  color: var(--text-primary-color) !important;
+
+  margin: 0 1rem;
+  border-radius: .3rem;
+}
+.nav-item:hover a {
+  color: var(--btn-primary-color) !important;
+}
+
+.dropdown-menu{
+  background-color: var(--card-primary-color) !important;
+  border-radius: .5rem;
+  width: fit-content !important;
+
+}
 
 
 
+
+.dropdown-item{
+  
+  margin-left: .2rem;
+  background-color: transparent !important;
+  color: rgba(39, 38, 38, 0.785) !important;
+  padding: 0 !important;
+  margin: O !important;
+  padding-left: .2rem !important;
+  font-size: .9rem !important;
+}
+.dropdown-item:hover{
+  color: rgba(39, 38, 38, 0.785) !important;
+}
+li.logout{
+  color: red !important;
+}
 
 /* section items */
-
+.section__card__items{
+  background-color: #006ee3;
+  width: 95vw !important;
+  padding: 2rem;
+  border-radius: 1rem;
+}
 .section__item{
   height: fit-content;
   width: 36vh !important;
